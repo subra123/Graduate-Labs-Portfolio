@@ -1,0 +1,74 @@
+Exercise 2: Define a function to calculate the square of a number
+Code:
+
+square :: Int -> Int
+square x = x * x
+
+main :: IO ()
+main = print (square 5)
+
+Output:
+
+25
+
+Code:
+
+square :: Int -> Int
+square x = x * x
+
+main :: IO ()
+main = print (square 50)
+
+Output:
+
+2500
+
+Exercise 3: Create a list of numbers and compute the sum of the list
+Code:
+
+sumList :: [Int] -> Int
+sumList [] = 0
+sumList (x:xs) = x + sumList xs
+
+main :: IO ()
+main = print(sumList [10,20,30])
+
+Output:
+
+60
+
+Exercise 4: Write a function to check if a list is empty
+Code:
+
+isEmpty :: [a] -> Bool
+isEmpty [] = True
+isEmpty _ = False
+
+main :: IO ()
+main = do
+  print (isEmpty [10])
+  print (isEmpty [])
+  print (isEmpty [10,20,30])
+
+Output:
+
+False
+True
+False
+
+Exercise 5: Write a program that asks the user for their name and prints a greeting
+Code:
+
+main :: IO ()
+main = do
+  putStrLn "What is your name?"
+  name <- getLine
+  putStrLn ("Hello, " ++ name)
+
+Output (Example Run):
+
+What is your name?
+John
+Hello, John
+
+

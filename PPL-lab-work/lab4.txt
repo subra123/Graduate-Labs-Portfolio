@@ -1,0 +1,131 @@
+---
+
+## Roll number: CH.EN.U4CYS22002
+
+## Name: S. ASWIN SREE RAM
+
+---
+
+### Ex01. Define a function `swapTuple :: (a, b) -> (b, a)` that swaps the elements of a tuple.
+
+**Objective of the Exercise:**
+
+The goal is to understand and implement the concept of tuple manipulation in Haskell by swapping the elements of a tuple.
+
+**Program Code:**
+
+```haskell
+swapTuple :: (a, b) -> (b, a)
+swapTuple (x, y) = (y, x)
+
+main :: IO ()
+main = do
+  print (swapTuple (1, "Hello"))
+  print (swapTuple ("First", "Second"))
+```
+
+**Explanation of the Code:**
+
+The `swapTuple` function takes a tuple `(a, b)` as input. Using pattern matching, it extracts the elements `x` and `y` and returns a new tuple `(y, x)` where the elements are swapped. The `main` function demonstrates the usage of `swapTuple` with two example tuples.
+
+---
+
+### Ex02. Define a function `multiplyElements :: Num a => [a] -> a -> [a]` that multiplies each element in a list by a given multiplier.
+
+**Program Code:**
+
+```haskell
+multiplyElements :: Num a => [a] -> a -> [a]
+multiplyElements xs n = map (* n) xs
+
+main :: IO ()
+main = do
+  print (multiplyElements [1, 2, 3, 4] 2)
+  print (multiplyElements [5, 10, 15] 3)
+```
+
+---
+
+### Ex03. Define a function `filterEven :: [Int] -> [Int]` that filters out all even numbers from a list of integers.
+
+**Program Code:**
+
+```haskell
+filterEven :: [Int] -> [Int]
+filterEven = filter odd
+
+main :: IO ()
+main = do
+  print (filterEven [1, 2, 3, 4, 5, 6])
+  print (filterEven [10, 15, 20, 25])
+```
+
+---
+
+### Ex04. Define a function `listZipWith :: (a -> b -> c) -> [a] -> [b] -> [c]` that applies a function to corresponding elements from two lists.
+
+**Program Code:**
+
+```haskell
+listZipWith :: (a -> b -> c) -> [a] -> [b] -> [c]
+listZipWith _ [] _ = []
+listZipWith _ _ [] = []
+listZipWith f (x:xs) (y:ys) = f x y : listZipWith f xs ys
+
+main :: IO ()
+main = do
+  print (listZipWith (+) [1, 2, 3] [4, 5, 6])
+  print (listZipWith (*) [1, 2, 3] [4, 5, 6])
+  print (listZipWith (,) [1, 2] ["a", "b", "c"])
+```
+
+---
+
+### Ex05. Define a function `reverseList :: [a] -> [a]` that reverses a list using recursion.
+
+**Program Code:**
+
+```haskell
+reverseList :: [a] -> [a]
+reverseList [] = []
+reverseList (x:xs) = reverseList xs ++ [x]
+
+main :: IO ()
+main = do
+  print (reverseList [1, 2, 3])
+  print (reverseList ["a", "b", "c"])
+  print (reverseList [])
+```
+
+---
+
+### Ex06. Define a function `averageMarks :: [Int] -> Float` that calculates the average marks of a student.
+
+**Program Code:**
+
+```haskell
+type Student = (String, Int, [Int])
+
+averageMarks :: [Int] -> Float
+averageMarks [] = 0
+averageMarks marks = fromIntegral (sum marks) / fromIntegral (length marks)
+
+displayStudentAverages :: [Student] -> IO ()
+displayStudentAverages [] = return ()
+displayStudentAverages ((name, _, marks):xs) = do
+    let avg = averageMarks marks
+    putStrLn (name ++ "'s average marks: " ++ show avg)
+    displayStudentAverages xs
+
+main :: IO ()
+main = do
+    let students = [ ("John", 1, [85, 90, 78, 92])
+                   , ("Jane", 2, [88, 76, 91, 85])
+                   , ("Tom", 3, [79, 82, 88, 85])
+                   ]
+    displayStudentAverages students  
+```
+
+---
+
+

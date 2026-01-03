@@ -1,0 +1,17 @@
+read and write of the file 
+---
+
+
+```
+use std::io::Write;
+use std::fs::File;
+use std::fs;
+
+fn main() -> Result<(), std::io::Error> {
+    let content = fs::read_to_string("input.txt")?;
+    File::create("output")?.write_all(content.as_bytes())?;
+    
+    Ok(()) // Explicitly return Ok(())
+}
+
+```

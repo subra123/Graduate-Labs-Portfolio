@@ -1,0 +1,245 @@
+## Roll number: CH.EN.U4CYS22002
+
+## Name: S. ASWIN SREE RAM
+
+[GitHub Repository](https://github.com/lvexol/6th-sem-labs/tree/main/PPL)
+
+---
+
+## Exercises
+
+### Ex01: Check if a number is zero
+
+#### Function Signature:
+```haskell
+isZero :: Int -> String
+```
+
+#### Code:
+```haskell
+isZero :: Int -> String
+isZero 0 = "Zero"
+isZero _ = "Not Zero"
+
+main :: IO ()
+main = do
+  print (isZero 0)
+  print (isZero 5)
+  print (isZero (-3))
+```
+
+#### Explanation:
+- Uses pattern matching to check if input is `0`.
+- Returns "Zero" for `0` and "Not Zero" otherwise.
+
+#### Sample Output:
+```
+"Zero"
+"Not Zero"
+"Not Zero"
+```
+
+---
+
+### Ex02: Count elements in a list
+
+#### Function Signature:
+```haskell
+countElements :: [a] -> Int
+```
+
+#### Code:
+```haskell
+countElements :: [a] -> Int
+countElements [] = 0
+countElements (_:xs) = 1 + countElements xs
+
+main :: IO ()
+main = do
+  print (countElements [1, 2, 3])
+  print (countElements [])
+  print (countElements ["a", "b", "c", "d"])
+```
+
+#### Explanation:
+- Recursively counts elements using pattern matching.
+
+#### Sample Output:
+```
+3
+0
+4
+```
+
+---
+
+### Ex03: Sum elements of a tuple
+
+#### Function Signature:
+```haskell
+sumTuple :: (Int, Int) -> Int
+```
+
+#### Code:
+```haskell
+sumTuple :: (Int, Int) -> Int
+sumTuple (x, y) = x + y
+
+main :: IO ()
+main = do
+  print (sumTuple (3, 5))
+  print (sumTuple (10, 20))
+```
+
+#### Sample Output:
+```
+8
+30
+```
+
+---
+
+### Ex04: Define and describe a `Color` type
+
+#### Function Signature:
+```haskell
+data Color = Red | Green | Blue
+describeColor :: Color -> String
+```
+
+#### Code:
+```haskell
+data Color = Red | Green | Blue
+
+describeColor :: Color -> String
+describeColor Red = "This is Red"
+describeColor Green = "This is Green"
+describeColor Blue = "This is Blue"
+
+main :: IO ()
+main = do
+  print (describeColor Red)
+  print (describeColor Blue)
+```
+
+#### Sample Output:
+```
+"This is Red"
+"This is Blue"
+```
+
+---
+
+### Ex05: Get the first element of a list
+
+#### Function Signature:
+```haskell
+firstElement :: [a] -> String
+```
+
+#### Code:
+```haskell
+firstElement :: [a] -> String
+firstElement [] = "Empty list"
+firstElement (x:_) = "First element is " ++ show x
+
+main :: IO ()
+main = do
+  print (firstElement [1, 2, 3]) 
+  print (firstElement ([] :: [Int]))  
+```
+
+#### Sample Output:
+```
+"First element is 1"
+"Empty list"
+```
+
+---
+
+### Ex06: Get the first two elements of a list
+
+#### Function Signature:
+```haskell
+firstTwoElements :: [a] -> [a]
+```
+
+#### Code:
+```haskell
+firstTwoElements :: [a] -> [a]
+firstTwoElements (x:y:_) = [x, y]
+firstTwoElements xs = xs
+
+main :: IO ()
+main = do
+  print (firstTwoElements [1, 2, 3])
+  print (firstTwoElements [10])
+  print (firstTwoElements ([]:: [Int]))
+```
+
+#### Sample Output:
+```
+[1, 2]
+[10]
+[]
+```
+
+---
+
+### Ex07: Describe coordinate pairs
+
+#### Function Signature:
+```haskell
+describePair :: (Int, Int) -> String
+```
+
+#### Code:
+```haskell
+describePair :: (Int, Int) -> String
+describePair (0, 0) = "Origin"
+describePair (0, _) = "X-Axis"
+describePair (_, 0) = "Y-Axis"
+describePair _ = "Other"
+
+main :: IO ()
+main = do
+  print (describePair (0, 0))
+  print (describePair (0, 5))
+  print (describePair (3, 0))
+  print (describePair (2, 3))
+```
+
+#### Sample Output:
+```
+"Origin"
+"X-Axis"
+"Y-Axis"
+"Other"
+```
+
+---
+
+### Ex08: Compute list length
+
+#### Function Signature:
+```haskell
+listLength :: [a] -> Int
+```
+
+#### Code:
+```haskell
+listLength :: [a] -> Int
+listLength [] = 0
+listLength (_:xs) = 1 + listLength xs
+```
+
+#### Explanation:
+- Recursively counts elements in the list.
+
+#### Sample Output:
+```
+3
+0
+```
+
+

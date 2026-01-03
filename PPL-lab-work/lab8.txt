@@ -1,0 +1,187 @@
+Got it! Here’s the **Rust question with code** for each problem:  
+
+---
+
+## **1. Library Book Management System (Ownership & Move Semantics)**  
+
+### **Question:**  
+Develop a **Library Book Management System** in Rust where books can be added, issued, and returned. Implement the following:  
+
+- Define a `Book` struct with fields: `title`, `author`, `ISBN`, and `is_issued` (boolean).  
+- Implement an `issue_book` function that moves ownership of a book from the library to a borrower.  
+- Demonstrate ownership transfer by preventing access to the book once it is issued.  
+- Use `.clone()` to allow the library to maintain a backup of issued books.  
+
+### **Rust Code:**  
+```rust
+struct Book {
+    title: String,
+    author: String,
+    ISBN: String,
+    is_issued: bool,
+}
+
+impl Book {
+    fn new(title: &str, author: &str, ISBN: &str) -> Self {
+        Self {
+            title: title.to_string(),
+            author: author.to_string(),
+            ISBN: ISBN.to_string(),
+            is_issued: false,
+        }
+    }
+
+    fn issue_book(self) -> Self {
+        println!("Issuing the book: {}", self.title);
+        Self {
+            is_issued: true,
+            ..self
+        }
+    }
+}
+
+fn main() {
+    let book = Book::new("The Rust Book", "John Doe", "123-456-789");
+    let library_backup = book.clone();
+
+    println!("Library backup (before issue):");
+    println!("Title: {}, Author: {}, ISBN: {}, Issued: {}", 
+        library_backup.title, library_backup.author, library_backup.ISBN, library_backup.is_issued);
+
+    let issued_book = book.issue_book();
+    
+    println!("\nIssued book details:");
+    println!("Title: {}, Author: {}, ISBN: {}, Issued: {}", 
+        issued_book.title, issued_book.author, issued_book.ISBN, issued_book.is_issued);
+}
+```
+
+---
+
+## **2. Secure Banking System (Borrowing & Mutable References)**  
+
+### **Question:**  
+Design a **secure banking system** where multiple users can check their balance, but only one user can modify it at a time.  
+
+- Define a `BankAccount` struct with fields: `account_number`, `owner_name`, and `balance`.  
+- Implement `view_balance()` to allow multiple users to borrow (immutable reference) the balance.  
+- Implement `deposit()` and `withdraw()` functions that modify the balance using **mutable borrowing**.  
+- Ensure only one function modifies the balance at a time.  
+
+### **Rust Code:**  
+```rust
+struct BankAccount {
+    account_number: u32,
+    owner_name: String,
+    balance: f64,
+}
+
+impl BankAccount {
+    fn new(account_number: u32, owner_name: &str, balance: f64) -> Self {
+        Self {
+            account_number,
+            owner_name: owner_name.to_string(),
+            balance,
+        }
+    }
+
+    fn view_balance(&self) {
+        println!("Balance for {}: ${:.2}", self.owner_name, self.balance);
+    }
+
+    fn deposit(&mut self, amount: f64) {
+        self.balance += amount;
+        println!("Deposited ${:.2}. New balance: ${:.2}", amount, self.balance);
+    }
+
+    fn withdraw(&mut self, amount: f64) {
+        if self.balance >= amount {
+            self.balance -= amount;
+            println!("Withdrew ${:.2}. New balance: ${:.2}", amount, self.balance);
+        } else {
+            println!("Insufficient balance!");
+        }
+    }
+}
+
+fn main() {
+    let mut account = BankAccount::new(1001, "Alice", 500.0);
+    
+    account.view_balance();
+    
+    account.deposit(200.0);
+    account.view_balance();
+    
+    account.withdraw(150.0);
+    account.view_balance();
+}
+```
+
+---
+
+## **3. Text Processing Tool (String Slices)**  
+
+### **Question:**  
+Build a **text-processing tool** that extracts useful information from user input.  
+
+- Allow users to input a sentence.  
+- Extract a specific word using **string slicing** (e.g., extract `"Rust"` from `"Rust is fast and safe."`).  
+- Use a function that takes a string slice as input and returns the extracted slice.  
+- Modify the original string and ensure the extracted word remains valid.  
+
+### **Rust Code:**  
+```rust
+fn extract_first_word(sentence: &str) -> &str {
+    let bytes = sentence.as_bytes();
+    
+    for (i, &item) in bytes.iter().enumerate() {
+        if item == b' ' {
+            return &sentence[..i];
+        }
+    }
+    sentence
+}
+
+fn main() {
+    let sentence = "Rust is fast and safe.";
+    let first_word = extract_first_word(sentence);
+    
+    println!("Extracted word: {}", first_word);
+    
+    let modified_sentence = &sentence[first_word.len()..].trim();
+    println!("Modified string: {}", modified_sentence);
+}
+```
+
+---
+
+## **4. Weather Data Analysis (Array Slices)**  
+
+### **Question:**  
+Develop a **weather analysis tool** that processes **temperature readings** from a weather station.  
+
+- Create an array of weekly temperature readings.  
+- Extract a slice of temperatures representing the last **three days**.  
+- Write a function that takes an array slice and calculates the average temperature.  
+- Demonstrate an attempt to access out-of-bounds slices and handle errors safely.  
+
+### **Rust Code:**  
+```rust
+fn average_temperature(temps: &[f64]) -> f64 {
+    let sum: f64 = temps.iter().sum();
+    sum / temps.len() as f64
+}
+
+fn main() {
+    let weekly_temps = [25.6, 27.3, 26.1, 28.9, 30.2, 29.8, 31.0];
+    
+    let last_three_days = &weekly_temps[4..];
+    
+    let avg_temp = average_temperature(last_three_days);
+    println!("Average temperature for the last 3 days: {:.2}°C", avg_temp);
+}
+```
+
+---
+
+🔥 **Now you have the Rust questions with full code!** Let me know if you need more. 🚀

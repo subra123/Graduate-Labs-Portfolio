@@ -1,0 +1,176 @@
+Here's the cleaned-up version with only the question names, code, and expected output:  
+
+---
+
+# **20CYS312 - Principles of Programming Languages - Lab Exercise 6**  
+
+## 1. Currying, Map, and Fold  
+
+```haskell
+applyOp :: (Int -> Int -> Int) -> [Int] -> Int
+applyOp op xs = foldl op 0 xs
+
+sumOfSquaresOfEvens :: [Int] -> Int
+sumOfSquaresOfEvens xs = applyOp (+) (map (^2) (filter even xs))
+
+main = do
+    print (sumOfSquaresOfEvens [1, 2, 3, 4, 5, 6])
+    print (sumOfSquaresOfEvens [1, 3, 5])
+    print (sumOfSquaresOfEvens [2, 4, 6, 8, 10])
+    print (sumOfSquaresOfEvens [1, 2, 3, 4])
+```
+
+**Expected Output:**  
+```
+56
+0
+220
+20
+```
+
+---
+
+## 2. Map, Filter, and Lambda  
+
+```haskell
+sumOfSquares :: [Int] -> Int
+sumOfSquares xs = sum (map (^2) (filter (<= 10) xs))
+
+main = do
+    print (sumOfSquares [5, 12, 9, 20, 15])
+    print (sumOfSquares [2, 3, 7, 8])
+    print (sumOfSquares [15, 18, 12, 20])
+    print (sumOfSquares [1, 2, 3])
+```
+
+**Expected Output:**  
+```
+106
+118
+0
+14
+```
+
+---
+
+## 3. Currying, Function Composition, and Map  
+
+```haskell
+compose :: (b -> c) -> (a -> b) -> a -> c
+compose f g = \x -> f (g x)
+
+main = do
+    let multiplyBy2 = (* 2)
+    let subtract3 = subtract 3
+    let composedFunc = compose multiplyBy2 subtract3
+    print (map composedFunc [1, 2, 3, 4])
+    print (map composedFunc [5, 6, 7, 8])
+    print (map composedFunc [0, -1, 2, 4])
+    print (map composedFunc [10, 15, 20])
+```
+
+**Expected Output:**  
+```
+[-2, 2, 6, 10]
+[4, 8, 12, 16]
+[-6, -8, -2, 2]
+[14, 24, 34]
+```
+
+---
+
+## 4. Currying, Filter, and Fold  
+
+```haskell
+filterAndFold :: (a -> Bool) -> (b -> a -> b) -> b -> [a] -> b
+filterAndFold p f z = foldl f z . filter p
+
+sumOddNumbers :: [Int] -> Int
+sumOddNumbers a = filterAndFold odd (+) 0 a
+
+main :: IO ()
+main = print (sumOddNumbers [1, 2, 3, 4, 5, 6])
+```
+
+**Expected Output:**  
+```
+9
+```
+
+---
+
+## 5. Map, Filter, and Fold Combination  
+
+```haskell
+productDoublesLessThan10 :: [Int] -> Int
+productDoublesLessThan10 = foldl (*) 1 . map (*2) . filter (<= 10)
+
+main :: IO ()
+main = print (productDoublesLessThan10 [5, 12, 9, 20, 15])
+```
+
+**Expected Output:**  
+```
+180
+```
+
+---
+
+## 6. Currying, Map, and Filter  
+
+```haskell
+filterAndMap :: (a -> Bool) -> (a -> b) -> [a] -> [b]
+filterAndMap p f = map f . filter p
+
+doubleEvenNumbers :: [Int] -> [Int]
+doubleEvenNumbers = filterAndMap even (*2)
+
+main :: IO ()
+main = print (doubleEvenNumbers [1, 2, 3, 4, 5, 6])
+```
+
+**Expected Output:**  
+```
+[4, 8, 12]
+```
+
+---
+
+## 7. Map, Fold, and Lambda  
+
+```haskell
+sumStringLengths :: [String] -> Int
+sumStringLengths = foldl (+) 0 . map length
+
+main :: IO ()
+main = print (sumStringLengths ["hello", "world", "haskell"])
+```
+
+**Expected Output:**  
+```
+17
+```
+
+---
+
+## 8. Filter, Map, and Function Composition  
+
+```haskell
+composeFilterMap :: (a -> Bool) -> (a -> b) -> [a] -> [b]
+composeFilterMap p f = map f . filter p
+
+squareNumbersLessThan5 :: [Int] -> [Int]
+squareNumbersLessThan5 = composeFilterMap (<= 5) (^2)
+
+main :: IO ()
+main = print (squareNumbersLessThan5 [3, 7, 2, 8, 4, 6])
+```
+
+**Expected Output:**  
+```
+[9, 4, 16]
+```
+
+---
+
+This is the complete list of questions with only the problem name, Haskell code, and expected output. Let me know if you need any modifications! 🚀

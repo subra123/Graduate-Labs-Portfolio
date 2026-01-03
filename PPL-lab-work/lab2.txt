@@ -1,0 +1,169 @@
+1. Functions and Types
+Exercise 01: Define a function square :: Int -> Int that takes an integer and returns its square.
+
+square :: Int -> Int
+square x = x * x
+
+main :: IO ()
+main = print (square 10)
+
+Input:
+
+square 5
+
+Output:
+
+25
+
+Exercise 02: Define a function maxOfTwo :: Int -> Int -> Int that takes two integers and returns the larger one.
+
+maxOfTwo :: Int -> Int -> Int
+maxOfTwo x y = if x > y then x else y
+                
+main :: IO ()
+main = print (maxOfTwo 10 5)
+
+Input:
+
+maxOfTwo 15 20
+
+Output:
+
+20
+
+2. Functional Composition
+Exercise 01: Define a function doubleAndIncrement :: [Int] -> [Int] that doubles each number in a list and increments it by 1 using function composition.
+
+doubleAndIncrement :: [Int] -> [Int]
+doubleAndIncrement = map ((+1) . (*2))
+
+main :: IO ()
+main = print (doubleAndIncrement [1, 2, 3, 4, 5])
+
+Input:
+
+doubleAndIncrement [1, 2, 3, 4, 5]
+
+Output:
+
+[3, 5, 7, 9, 11]
+
+Exercise 02: Write a function sumOfSquares :: [Int] -> Int that takes a list of integers, squares each element, and returns the sum of the squares using composition.
+
+sumOfSquare :: [Int] -> Int
+sumOfSquare = sum . map (^2)
+
+main :: IO ()
+main = print(sumOfSquare [10, 20, 30])
+
+Input:
+
+sumOfSquares [1, 2, 3]
+
+Output:
+
+14
+
+3. Numbers
+Exercise 01: Write a function factorial :: Int -> Int that calculates the factorial of a given number using recursion.
+
+factorial :: Int -> Int
+factorial 0 = 1
+factorial n = n * factorial (n-1)
+
+main :: IO ()
+main = print (factorial 5)
+
+Input:
+
+factorial 5
+
+Output:
+
+120
+
+Exercise 02: Write a function power :: Int -> Int -> Int that calculates the power of a number (base raised to exponent) using recursion.
+
+power :: Int -> Int -> Int
+power _ 0 = 1
+power b e = b * power b (e-1)
+
+main :: IO ()
+main = print (power 5 3)
+
+Input:
+
+power 2 3
+
+Output:
+
+8
+
+4. Lists
+Exercise 01: Write a function removeOdd :: [Int] -> [Int] that removes all odd numbers from a list.
+
+removeOdd :: [Int] -> [Int]
+removeOdd = filter even
+
+main :: IO ()
+main = print (removeOdd [1,2,3,4,5,6,7,8])
+
+Input:
+
+removeOdd [1,2,3,4,5,6,7,8]
+
+Output:
+
+[2,4,6,8]
+
+Exercise 02: Write a function firstNElements :: Int -> [a] -> [a] that takes a number n and a list and returns the first n elements of the list.
+
+firstNElements :: Int -> [a] -> [a]
+firstNElements _ [] = []
+firstNElements 0 _ = []
+firstNElements n (x:xs) = x : firstNElements (n-1) xs
+
+main :: IO ()
+main = print (firstNElements 3 [1,2,4,5,5,6,2,3])
+
+Input:
+
+firstNElements 3 [1,2,3,4,5]
+
+Output:
+
+[1,2,3]
+
+5. Tuples
+Exercise 01: Define a function swap :: (a, b) -> (b, a) that swaps the elements of a pair (tuple with two elements).
+
+swap :: (a,b) -> (b,a)
+swap (x,y) = (y,x)
+
+main :: IO ()
+main = print (swap (1,"aswin"))
+
+Input:
+
+swap (1, "hello")
+
+Output:
+
+("hello", 1)
+
+Exercise 02: Write a function addPairs :: [(Int, Int)] -> [Int] that takes a list of tuples containing pairs of integers and returns a list of their sums.
+
+addPairs :: [(Int, Int)] -> [Int]
+addPairs = map (\(x, y) -> x + y)
+
+main :: IO ()
+main = print (addPairs [(1,2),(3,2),(5,2)])
+
+Input:
+
+addPairs [(1,2), (3,4), (5,6)]
+
+Output:
+
+[3,7,11]
+

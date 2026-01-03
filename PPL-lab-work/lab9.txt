@@ -1,0 +1,148 @@
+## 1. Nested Decision Making with if-else
+
+```rust
+use std::io;
+
+fn main() {
+    let mut age_input = String::new();
+    let mut income_input = String::new();
+
+    println!("Enter your age:");
+    io::stdin().read_line(&mut age_input).expect("Failed to read line");
+    let age: u32 = age_input.trim().parse().expect("Please enter a number");
+
+    println!("Enter your income:");
+    io::stdin().read_line(&mut income_input).expect("Failed to read line");
+    let income: u32 = income_input.trim().parse().expect("Please enter a number");
+
+    if age < 21 {
+        println!("You are ineligible for a loan.");
+    } else if age <= 60 {
+        if income > 50000 {
+            println!("You are eligible for a loan.");
+        } else {
+            println!("You are ineligible for a loan due to insufficient income.");
+        }
+    } else {
+        println!("You need a guarantor for the loan.");
+    }
+}
+```
+
+## 2. Using match with Complex Cases
+
+```rust
+use std::io;
+
+fn main() {
+    let mut item_input = String::new();
+    let mut quantity_input = String::new();
+
+    println!("Enter menu item (Burger, Pizza, Pasta):");
+    io::stdin().read_line(&mut item_input).expect("Failed to read line");
+    let item = item_input.trim();
+
+    println!("Enter quantity:");
+    io::stdin().read_line(&mut quantity_input).expect("Failed to read line");
+    let quantity: u32 = quantity_input.trim().parse().expect("Please enter a number");
+
+    let price = match item {
+        "Burger" => 100,
+        "Pizza" => 150,
+        "Pasta" => 120,
+        _ => {
+            println!("Item not found.");
+            return;
+        }
+    };
+
+    let total_price = if quantity > 5 {
+        (price * quantity) - ((price * quantity) * 10 / 100)
+    } else {
+        price * quantity
+    };
+
+    println!("Total price: ₹{}", total_price);
+}
+```
+
+## 3. Using Loops for Data Processing
+
+```rust
+fn main() {
+    let n = 10;
+    let mut fib_sequence = vec![0, 1];
+
+    for i in 2..n {
+        let next_fib = fib_sequence[i - 1] + fib_sequence[i - 2];
+        fib_sequence.push(next_fib);
+    }
+
+    println!("Fibonacci sequence: {:?}", fib_sequence);
+}
+```
+
+## 4. Pattern Matching in Loops with while let
+
+```rust
+use std::io;
+
+fn main() {
+    let mut numbers = Vec::new();
+    let mut input = String::new();
+
+    println!("Enter numbers (0 to stop):");
+    while let Ok(_) = io::stdin().read_line(&mut input) {
+        let number: i32 = input.trim().parse().expect("Please enter a number");
+        if number == 0 {
+            break;
+        }
+        numbers.push(number);
+        input.clear();
+    }
+
+    println!("Even numbers: {:?}", numbers.iter().filter(|&&x| x % 2 == 0).collect::<Vec<_>>());
+}
+```
+
+## 5. Tuple Manipulation in a Real-World Scenario
+
+```rust
+fn main() {
+    let employee = (1, "Alice", 45000);
+    let updated_employee = apply_salary_hike(employee);
+    println!("Updated Employee: {:?}", updated_employee);
+}
+
+fn apply_salary_hike(employee: (u32, &str, u32)) -> (u32, &str, u32) {
+    let (id, name, salary) = employee;
+    let new_salary = if salary < 50000 { salary + (salary * 10 / 100) } else { salary };
+    (id, name, new_salary)
+}
+```
+
+## 6. Vector (List) Operations with Iterators
+
+```rust
+fn main() {
+    let temperatures = vec![30, 32, 29, 35, 28, 31, 33];
+
+    let average = calculate_average(&temperatures);
+    let (highest, lowest) = find_high_low(&temperatures);
+
+    println!("Average Temperature: {}", average);
+    println!("Highest Temperature: {}", highest);
+    println!("Lowest Temperature: {}", lowest);
+}
+
+fn calculate_average(temps: &Vec<i32>) -> f32 {
+    let sum: i32 = temps.iter().sum();
+    sum as f32 / temps.len() as f32
+}
+
+fn find_high_low(temps: &Vec<i32>) -> (i32, i32) {
+    let highest = *temps.iter().max().unwrap();
+    let lowest = *temps.iter().min().unwrap();
+    (highest, lowest)
+}
+

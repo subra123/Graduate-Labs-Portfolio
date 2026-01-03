@@ -1,0 +1,51 @@
+git clone https://github.com/petehouston/hadoop-wordcount/tree/master
+
+for wordcount 
+
+https://medium.com/@tirthshah100/word-count-in-apache-hadoop-mapreduce-c6ee8e737fb9
+
+
+for starting hadoop service 
+start-all.sh
+
+or # Start HDFS (NameNode, DataNode)
+start-dfs.sh
+
+# Start YARN (ResourceManager, NodeManager)
+start-yarn.sh
+
+for viewing running service 
+jps
+
+Hadoop Service Testing via Browser:
+Use the following URLs to verify the status of your Hadoop services through a web browser:
+1. NameNode Web UI: http://<namenode_host>:50070/
+2. ResourceManager Web UI: http://<resourcemanager_host>:8088/
+3. JobHistory Server Web UI: http://<historyserver_host>:10020/
+4. YARN NodeManager Web UI: http://<nodemanager_host>:8042/
+
+localhost use 
+
+create directory -> hadoop fs -mkdir /mydata
+
+uploading file to hdfs -> hadoop fs -put ~/sample.txt /mydata/
+
+list file in hdfs -> hadoop fs -ls /mydata
+
+
+summary 
+
+# Start Hadoop Services
+start-dfs.sh
+start-yarn.sh
+hadoop-daemon.sh start secondarynamenode   # optional
+
+# Verify services
+jps
+
+# HDFS interaction
+hadoop fs -mkdir /mydata
+hadoop fs -put ~/sample.txt /mydata/
+hadoop fs -ls /mydata
+
+

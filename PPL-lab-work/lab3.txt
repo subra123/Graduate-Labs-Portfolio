@@ -1,0 +1,279 @@
+---
+
+## 1. Basic Data Types
+
+### a. **Sum of two integers**
+
+**Objective:** Implement a Haskell function to add two integers.
+
+**Program Code:**
+
+```haskell
+sumInt :: Int -> Int -> Int
+sumInt x y = x + y
+
+main :: IO ()
+main = print (sumInt 10 20)
+```
+
+**Explanation:**
+- `sumInt` takes two integers as input and returns their sum.
+- `main` calls `sumInt` with 10 and 20, then prints the result.
+
+**Input/Output Examples:**
+
+```
+Input: sumInt 10 20
+Output: 30
+```
+
+---
+
+### b. **Check if a number is even or odd**
+
+**Objective:** Implement a function to check if a number is even.
+
+**Program Code:**
+
+```haskell
+isEven :: Int -> Bool
+isEven n = n `mod` 2 == 0
+
+main :: IO ()
+main = print (isEven 19)
+```
+
+**Explanation:**
+- `isEven` uses the modulo operator (`mod`) to determine if a number is divisible by 2.
+
+**Input/Output Examples:**
+
+```
+Input: isEven 4
+Output: True
+
+Input: isEven 7
+Output: False
+```
+
+---
+
+### c. **Absolute value**
+
+**Objective:** Implement a function to calculate the absolute value of a float.
+
+**Program Code:**
+
+```haskell
+absolute :: Float -> Float
+absolute x = if x < 0 then -x else x
+
+main :: IO ()
+main = print (absolute (-10.5))
+```
+
+**Explanation:**
+- Uses `if-then-else` to check if `x` is negative, then returns the absolute value.
+
+**Input/Output Examples:**
+
+```
+Input: absolute (-7.8)
+Output: 7.8
+```
+
+---
+
+## 2. List Operations
+
+### a. **Sum of all elements**
+
+**Objective:** Implement a recursive function to sum a list of integers.
+
+**Program Code:**
+
+```haskell
+sumList :: [Int] -> Int
+sumList [] = 0
+sumList (x:xs) = x + sumList xs
+
+main :: IO ()
+main = print (sumList [1, 2, 3, 4, 5])
+```
+
+**Explanation:**
+- Uses recursion to sum elements of the list.
+
+**Input/Output Examples:**
+
+```
+Input: sumList [10, 20, 30]
+Output: 60
+```
+
+---
+
+### b. **Filter even numbers**
+
+**Objective:** Implement a function to filter even numbers from a list.
+
+**Program Code:**
+
+```haskell
+filterEven :: [Int] -> [Int]
+filterEven xs = [x | x <- xs, x `mod` 2 == 0]
+
+main :: IO ()
+main = print (filterEven [1, 2, 3, 4, 5, 6])
+```
+
+**Explanation:**
+- Uses list comprehension to filter even numbers.
+
+**Input/Output Examples:**
+
+```
+Input: filterEven [10, 15, 20, 25]
+Output: [10, 20]
+```
+
+---
+
+### c. **Reverse a list**
+
+**Objective:** Implement a recursive function to reverse a list.
+
+**Program Code:**
+
+```haskell
+reverseList :: [a] -> [a]
+reverseList [] = []
+reverseList (x:xs) = reverseList xs ++ [x]
+
+main :: IO ()
+main = print (reverseList [1, 2, 3, 4, 5])
+```
+
+**Explanation:**
+- Uses recursion to reverse the list by appending elements in reverse order.
+
+**Input/Output Examples:**
+
+```
+Input: reverseList [10, 20, 30]
+Output: [30, 20, 10]
+```
+
+---
+
+## 3. Basic Functions
+
+### a. **Increment each element**
+
+**Objective:** Implement a function to increment each element in a list.
+
+**Program Code:**
+
+```haskell
+incrementEach :: [Int] -> [Int]
+incrementEach xs = map (+1) xs
+
+main :: IO ()
+main = print (incrementEach [1, 2, 3, 4, 5])
+```
+
+**Explanation:**
+- Uses `map` to apply `(+1)` to each element in the list.
+
+**Input/Output Examples:**
+
+```
+Input: incrementEach [10, 20, 30]
+Output: [11, 21, 31]
+```
+
+---
+
+### b. **Square a number**
+
+**Objective:** Implement a function to square an integer.
+
+**Program Code:**
+
+```haskell
+square :: Int -> Int
+square x = x * x
+
+main :: IO ()
+main = print (square 5)
+```
+
+**Explanation:**
+- Multiplies `x` by itself to compute the square.
+
+**Input/Output Examples:**
+
+```
+Input: square 3
+Output: 9
+```
+
+---
+
+## 4. Function Composition
+
+### a. **Compose functions to add and multiply**
+
+**Objective:** Implement a function to first add two integers and then multiply the result by another integer.
+
+**Program Code:**
+
+```haskell
+addThenMultiply :: Int -> Int -> Int -> Int
+addThenMultiply x y z = (x + y) * z
+
+main :: IO ()
+main = print (addThenMultiply 2 3 4)
+```
+
+**Explanation:**
+- Adds `x` and `y`, then multiplies by `z`.
+
+**Input/Output Examples:**
+
+```
+Input: addThenMultiply 3 4 5
+Output: 35
+```
+
+---
+
+### b. **Apply multiple transformations**
+
+**Objective:** Implement a function that squares each element and adds 10 using function composition.
+
+**Program Code:**
+
+```haskell
+transformList :: [Int] -> [Int]
+transformList = map ((+10) . (^2))
+
+main :: IO ()
+main = print (transformList [1, 2, 3, 4])
+```
+
+**Explanation:**
+- Uses function composition to first square elements and then add 10.
+
+**Input/Output Examples:**
+
+```
+Input: transformList [1, 2, 3]
+Output: [11, 14, 19]
+```
+
+---
+
+This document summarizes and structures Aswin Sree Ram's Haskell exercises with explanations and code formatting for clarity.
+
+
